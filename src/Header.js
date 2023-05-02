@@ -14,9 +14,15 @@ import {
   createMockFormSubmission,
   onMessage,
   saveLikedFormSubmission,
+  fetchLikedFormSubmissions,
 } from "./service/mockServer";
 
-export default function Header() {
+import {
+  fetchLikedFormSubmissionsError,
+  saveLikedFormSubmissionError,
+} from "./errorMessages";
+
+export default function Header({ setSubmissions }) {
   const [open, setOpen] = useState(false);
   const [submission, setSubmission] = useState(null);
 
@@ -41,9 +47,17 @@ export default function Header() {
         style={{ color: "aqua" }}
         size="small"
         onClick={() => {
-          saveLikedFormSubmission(submission).catch(() =>
-            alert("Server error! Please try a new submission!")
-          );
+          saveLikedFormSubmission(submission)
+            .then((response) => {
+              console.log(response);
+              fetchLikedFormSubmissions()
+                .then((response) => {
+                  console.log(response);
+                  setSubmissions(response.formSubmissions);
+                })
+                .catch(() => alert(fetchLikedFormSubmissionsError));
+            })
+            .catch(() => alert(saveLikedFormSubmissionError));
           setOpen(false);
         }}
       >
