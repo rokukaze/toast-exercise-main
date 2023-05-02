@@ -10,7 +10,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Snackbar } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-import { createMockFormSubmission, onMessage } from "./service/mockServer";
+import {
+  createMockFormSubmission,
+  onMessage,
+  saveLikedFormSubmission,
+} from "./service/mockServer";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -37,7 +41,7 @@ export default function Header() {
         style={{ color: "aqua" }}
         size="small"
         onClick={() => {
-          // submit like to backend here
+          saveLikedFormSubmission(submission);
           setOpen(false);
         }}
       >
