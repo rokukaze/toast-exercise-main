@@ -60,6 +60,20 @@ export default function Header() {
     </>
   );
 
+  const submissionDescription = () => {
+    return (
+      <>
+        {submission && (
+          <>
+            {submission.data.firstName + " " + submission.data.lastName + " "}
+            <br></br>
+            {submission.data.email}
+          </>
+        )}
+      </>
+    );
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -89,8 +103,7 @@ export default function Header() {
           autoHideDuration={6000}
           anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           onClose={handleClose}
-          // Test implementation functionality to make sure it works correctly before formatting data
-          message={JSON.stringify(submission)}
+          message={submissionDescription()}
           action={action}
         />
       </AppBar>

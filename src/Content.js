@@ -15,6 +15,17 @@ export default function Content() {
         alert("Server error! Please refresh the page to see liked submissions!")
       );
   }, []);
+
+  const createSubmissionListItemText = (submission) => {
+    return (
+      submission.data.firstName +
+      " " +
+      submission.data.lastName +
+      " - " +
+      submission.data.email
+    );
+  };
+
   return (
     <Box sx={{ marginTop: 3 }}>
       <Typography variant="h4">Liked Form Submissions</Typography>
@@ -22,7 +33,9 @@ export default function Content() {
       <Typography variant="body1" sx={{ fontStyle: "italic", marginTop: 1 }}>
         <ul>
           {submissions.map((submission) => (
-            <li key={submission.id}>{JSON.stringify(submission)}</li>
+            <li key={submission.id}>
+              {createSubmissionListItemText(submission)}
+            </li>
           ))}
         </ul>
       </Typography>
