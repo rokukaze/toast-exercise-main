@@ -30,15 +30,13 @@ export default function Content() {
     <Box sx={{ marginTop: 3 }}>
       <Typography variant="h4">Liked Form Submissions</Typography>
 
-      <Typography variant="body1" sx={{ fontStyle: "italic", marginTop: 1 }}>
-        <ul>
-          {submissions.map((submission) => (
-            <li key={submission.id}>
-              {createSubmissionListItemText(submission)}
-            </li>
-          ))}
-        </ul>
-      </Typography>
+      <ul>
+        {submissions.map((submission) => (
+          <li key={submission.id}>
+            {createSubmissionListItemText(submission)}
+          </li>
+        ))}
+      </ul>
     </Box>
   );
 }
