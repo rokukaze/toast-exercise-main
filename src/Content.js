@@ -11,10 +11,8 @@ export default function Content() {
   useEffect(() => {
     fetchLikedFormSubmissions()
       .then((response) => setSubmissions(response.formSubmissions))
-      .catch((error) =>
-        alert(
-          error.message + "! Please refresh the page to see liked submissions!"
-        )
+      .catch(() =>
+        alert("Server error! Please refresh the page to see liked submissions!")
       );
   }, []);
   return (
