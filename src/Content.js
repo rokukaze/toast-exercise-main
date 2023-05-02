@@ -9,9 +9,13 @@ export default function Content() {
 
   //fetches list of liked submissions on mount
   useEffect(() => {
-    fetchLikedFormSubmissions().then((response) =>
-      setSubmissions(response.formSubmissions)
-    );
+    fetchLikedFormSubmissions()
+      .then((response) => setSubmissions(response.formSubmissions))
+      .catch((error) =>
+        alert(
+          error.message + "! Please refresh the page to see liked submissions!"
+        )
+      );
   }, []);
   return (
     <Box sx={{ marginTop: 3 }}>

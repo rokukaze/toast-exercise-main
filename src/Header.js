@@ -41,7 +41,9 @@ export default function Header() {
         style={{ color: "aqua" }}
         size="small"
         onClick={() => {
-          saveLikedFormSubmission(submission);
+          saveLikedFormSubmission(submission).catch((error) =>
+            alert(error.message + "! Please try a new submission!")
+          );
           setOpen(false);
         }}
       >
