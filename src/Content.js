@@ -19,9 +19,9 @@ export default function Content() {
 
       <Typography variant="body1" sx={{ fontStyle: "italic", marginTop: 1 }}>
         <ul>
-          {submissions.map(function (submission) {
-            return <li key={submission.id}>{JSON.stringify(submission)}</li>;
-          })}
+          {submissions.map((submission) => (
+            <li key={submission.id}>{JSON.stringify(submission)}</li>
+          ))}
         </ul>
       </Typography>
     </Box>
