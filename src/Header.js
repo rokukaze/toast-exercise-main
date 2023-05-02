@@ -10,13 +10,16 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Snackbar } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-// Removed until basic functionality of toast popup implemented
-// import { createMockFormSubmission } from "./service/mockServer";
+import { createMockFormSubmission, onMessage } from "./service/mockServer";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [submission, setSubmission] = useState(null);
 
   const handleClick = () => {
+    //onMessage primes the mock form setting our state to our submission via push to callback stack
+    onMessage((message) => setSubmission(message));
+    createMockFormSubmission();
     setOpen(true);
   };
 
@@ -70,9 +73,6 @@ export default function Header() {
             variant="contained"
             size="small"
             color="secondary"
-            // Needs proper implementation
-            // add mock form submission back into handle click, but needs to execute something before hand, onMessage allows some kind of function execution
-            // use onMessage to execute a function that i create, related to saveLikedFormSubmission method
             onClick={handleClick}
           >
             New Submission
@@ -83,7 +83,8 @@ export default function Header() {
           autoHideDuration={6000}
           anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           onClose={handleClose}
-          message="Toast Info Here"
+          // Test implementation functionality to make sure it works correctly before formatting data
+          message={JSON.stringify(submission)}
           action={action}
         />
       </AppBar>
